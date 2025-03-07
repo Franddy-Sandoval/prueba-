@@ -1,0 +1,173 @@
+/* Uso la fuente Playfair Display */
+body {
+    font-family: 'Playfair Display', serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+  }
+  
+  /* Contenedor general de productos */
+  .product-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  /* Tarjeta del producto con dimensiones aumentadas */
+  .product-card {
+    display: flex;
+    width: 350px;
+    height: 400px;
+    background-color: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    overflow: hidden;
+  }
+  
+  /* Contenedor de la imagen con padding para "flotar" */
+  .image-container {
+    width: 150px;
+    height: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .image-container img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+  
+  /* Contenedor de la información */
+  .info-container {
+    padding: 10px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  /* Título del producto en dos líneas:
+     - Arriba: el número o "NV", más grande
+     - Abajo: el nombre del vino, más pequeño
+  */
+  .product-title {
+    margin: 0 0 10px 0;
+    text-align: left;
+    color: #333;
+  }
+  .product-number {
+    font-size: 28px; /* más grande para el año / NV */
+    font-weight: bold;
+    line-height: 1.1;
+    color: #555;
+  }
+  .product-name {
+    font-size: 18px; /* más pequeño para el nombre */
+    line-height: 1.2;
+    color: #666;
+    display: block;
+    margin-top: 2px;
+  }
+  
+  /* Texto de "Sold out" */
+  .sold-out-text {
+    color: #ff0000;
+    font-weight: bold;
+    margin: 5px 0;
+  }
+  
+  /* Contenedor de opciones (Bottle y Case) */
+  .options-container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+  
+  /* Cada opción (columna) */
+  .option {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .option p {
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #666;
+    text-align: center;
+  }
+  
+  .option input[type="checkbox"] {
+    margin-left: 5px;
+  }
+  
+  /* Botones: mismos estilos y ancho para ambas opciones */
+  .option button {
+    width: 90%;
+    padding: 8px;
+    border: none;
+    border-radius: 3px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  
+  .details {
+    background-color: #f0f0f0;
+    color: #333;
+  }
+  
+  .add-to-cart {
+    background-color: #ffcc00;
+    color: #fff;
+  }
+  
+  .option button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  /* Separador sutil entre las dos opciones */
+  .separator {
+    width: 1px;
+    background-color: #ccc;
+    margin: 0 10px;
+  }
+  
+  /* Opacidad reducida para productos "sold-out" */
+  .sold-out {
+    opacity: 0.7;
+  }
+  
+  /* Responsividad */
+  @media (max-width: 768px) {
+    .product-card {
+      width: 100%;
+      max-width: 400px;
+      height: auto;
+      flex-direction: column;
+    }
+    .image-container {
+      width: 100%;
+      height: auto;
+      padding: 10px;
+    }
+    .info-container {
+      padding: 10px;
+    }
+    .options-container {
+      flex-direction: column;
+    }
+    .separator {
+      display: none;
+    }
+  }
+  
