@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Catálogo de Vinos Premium</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* Estilos base */
+    body {
+      font-family: 'Arial', sans-serif;
+      background: #f8f8f8;
+      margin: 0;
+      padding: 40px 20px;
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      justify-content: center;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    /* Tarjeta principal */
+    .wine-card {
+      width: 350px;
+      cursor: pointer;
+      position: relative;
+      margin-bottom: 20px;
+    }
+
+    /* Parte frontal del cubo */
+    .card-front {
+      height: 350px;
+      border-radius: 18px 18px 0 0; /* Bordes superiores redondeados, inferiores cuadrados */
+      overflow: hidden;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+      transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      background-color: #f8f8f8; /* Color de fondo para espacios vacíos */
+    }
+
+    .card-front img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      transition: transform 0.3s ease;
+    }
+
+    /* Panel de información */
+    .info-panel {
+      width: 350px;
+      max-height: 0;
+      overflow: hidden;
+      background: #ffffff;
+      border-radius: 0 0 18px 18px; /* Esquinas inferiores redondeadas */
+      transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      position: relative;
+      z-index: 1;
+    }
+
+    .wine-info {
+      padding: 25px;
+      color: #4a4a4a;
+    }
+
+    .wine-info h3 {
+      font-size: 1.8em;
+      margin: 0 0 20px;
+      color: #5e2a2a;
+    }
+
+    .wine-info p {
+      line-height: 1.7;
+      font-size: 1.05em;
+      margin: 0 0 15px;
+    }
+
+    /* Estados interactivos */
+    .wine-card:hover .card-front {
+      transform: translateY(-5px);
+    }
+
+    .wine-card.active .info-panel {
+      max-height: 500px;
+    }
+
+    /* Responsividad */
+    @media (max-width: 768px) {
+      .wine-card {
+        width: 80vw;
+        max-width: 400px;
+      }
+
+      .card-front {
+        height: 80vw;
+        max-height: 400px;
+      }
+
+      .info-panel {
+        width: 100%;
+      }
+
+      .wine-info {
+        padding: 20px;
+      }
+    }
+
+    @media (hover: none) {
+      .wine-card:hover .card-front {
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Ejemplo de tarjeta 1 -->
+    <div class="wine-card">
+      <div class="card-front">
+        <img src="h.jpg" alt="Vino Tinto Reserva">
+      </div>
+      <div class="info-panel">
+        <div class="wine-info">
+          <h3>Vino Tinto Reserva</h3>
+          <p>
+            🍇 Varietal: Tempranillo 85% - Garnacha 15%<br>
+            🗺️ Región: DOCa Rioja, España<br>
+            🕒 Añejamiento: 24 meses en barrica<br>
+            🍷 Notas de cata: Frutos negros maduros, toques de vainilla y especias dulces<br>
+            🍽️ Maridaje: Cordero asado, quesos curados, embutidos ibéricos
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ejemplo de tarjeta 2 -->
+    <div class="wine-card">
+      <div class="card-front">
+        <img src="n.jpg" alt="Vino Blanco Fermentado en Barrica">
+      </div>
+      <div class="info-panel">
+        <div class="wine-info">
+          <h3>Blanco Fermentado en Barrica</h3>
+          <p>
+            🍇 Varietal: Chardonnay 100%<br>
+            🗺️ Región: Borgoña, Francia<br>
+            🕒 Fermentación: 6 meses en barricas nuevas<br>
+            🥂 Notas de cata: Manzana horneada, avellana tostada, toques minerales<br>
+            🐟 Maridaje: Pescados grasos, mariscos al ajillo, foie gras
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.querySelectorAll('.wine-card').forEach(card => {
+      // Se utiliza una propiedad personalizada para saber si se hizo click
+      card.clicked = false;
+
+      // Para desktop: efecto hover solo si no se ha hecho click
+      card.addEventListener('mouseenter', function() {
+        if(window.innerWidth > 768 && !this.clicked) {
+          this.classList.add('active');
+        }
+      });
+
+      card.addEventListener('mouseleave', function() {
+        if(window.innerWidth > 768 && !this.clicked) {
+          this.classList.remove('active');
+        }
+      });
+
+      // Al hacer click se alterna la visibilidad del panel de información
+      card.addEventListener('click', function() {
+        this.clicked = !this.clicked;
+        if(this.clicked) {
+          this.classList.add('active');
+        } else {
+          this.classList.remove('active');
+        }
+      });
+
+      // Optimización para dispositivos touch
+      card.addEventListener('touchend', function(e) {
+        e.preventDefault();
+        this.clicked = !this.clicked;
+        if(this.clicked) {
+          this.classList.add('active');
+        } else {
+          this.classList.remove('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
